@@ -10,7 +10,7 @@ listaUsuarios.append(Usuarios(0,"Usuario","Maestro","admin","admin"))
 app = Flask(__name__)
 
 
-@app.route('/', methods=['POST','GET'])
+@app.route('/', methods=['POST'])
 def index():
 
 	if request.method == 'POST':
@@ -23,14 +23,9 @@ def index():
 			if user.getUsuario() == nombre and user.getPassword() == passw:
 				return user.dump()
 
-		return "Usuario No Encontrado"	
+		return "Usuario No Encontrado"		
 
-	if request.method == 'GET':
-
-		nombre = listaUsuarios[0].usuario
-		return "<h1> BIENVENIDO: "+ nombre + "</h1>"	
-
-@app.route('/registro',methods=['POST'])
+@app.route('/registro', methods=['POST'])
 def registro():
 
 	if request.method == 'POST':
