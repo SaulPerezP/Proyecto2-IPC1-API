@@ -19,12 +19,22 @@ def login():
 		nombre = request.form.get('usuario')
 		passw = request.form.get('pass')
 
+		response = {}
+
 		for user in listaUsuarios:
 
 			if user.getUsuario() == nombre and user.getPassword() == passw:
-				return user.dump()
 
-		return "Usuario No Encontrado"		
+				response["id"] = user.getId()
+				response["nombre"] = user.getNombre() + user.getApellido()
+				response["usuario"] = user.getUsuario()
+				response["estado"] = 1
+
+				return response
+
+		response["estado"] = 0		
+
+		return response		
 
 @app.route('/registro', methods=['POST'])
 def registro():
