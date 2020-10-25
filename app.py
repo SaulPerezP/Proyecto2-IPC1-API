@@ -75,7 +75,7 @@ def recuperacion():
 			else:
 				contador_temporal += 1
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def index():
 
 	return "<H1>Bienvenido a mis dominios</H1>"
