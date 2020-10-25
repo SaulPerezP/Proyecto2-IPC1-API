@@ -10,8 +10,8 @@ listaUsuarios.append(Usuarios(0,"Usuario","Maestro","admin","admin"))
 app = Flask(__name__)
 
 
-@app.route('/', methods=['POST'])
-def index():
+@app.route('/login', methods=['POST'])
+def login():
 
 	if request.method == 'POST':
 
@@ -74,7 +74,11 @@ def recuperacion():
 
 			else:
 				contador_temporal += 1
-				
+
+@app.route('/', methods=['POST'])
+def index():
+
+	return "<H1>Bienvenido a mis dominios</H1>"
 
 if __name__ == "__main__":
 	app.run(threaded=True, port=5000,debug=True)		
