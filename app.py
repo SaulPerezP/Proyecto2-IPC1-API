@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from Usuarios import Usuarios
 from flask_cors import CORS
+
 listaUsuarios = []
 contador = 1
 
