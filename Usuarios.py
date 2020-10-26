@@ -41,16 +41,18 @@ class Usuarios:
 	def setPassword(self, password):
 		self.password = password
 
+	#DUMP	
 	def dump(self):
 	
 		return {
 
 			'id' : self.id,
-			'nombre': self.nombre + " " +self.apellido,
+			'nombre': self.nombre,
+			'apellido': self.apellido,
 			'usuario': self.usuario
 		}			
 
-
+#
 
 	
 
