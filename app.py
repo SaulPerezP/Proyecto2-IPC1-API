@@ -25,18 +25,17 @@ def login():
 
 		response = {}
 
-		for user in lista_usuarios
+		if user.validar_usuario(nombre,passw) == True:
 
-			if user.validar_usuario(nombre,passw):
+			response["id"] = "user.getId()"
+			response["nombre"] = "user.getNombre() + user.getApellido()"
+			response["usuario"] = "user.getUsuario()"
+			response["usuario"] = "user.getUsuario()"
+			response["estado"] = 1
 
-				response["id"] = "user.getId()"
-				response["nombre"] = "user.getNombre() + user.getApellido()"
-				response["usuario"] = "user.getUsuario()"
-				response["estado"] = 1
+			print ("La autenticación fue correcta")
 
-				print ("La autenticación fue correcta")
-
-				return response
+			return response
 
 		response["estado"] = 0	
 		print ("La autenticación fue incorrecta")	
