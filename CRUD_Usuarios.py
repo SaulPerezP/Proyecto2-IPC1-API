@@ -29,7 +29,9 @@ class CRUD_Usuarios:
 
 			if user.getUsuario() == usuario and user.getPassword() == passw:
 
-				return True
+				return user
+
+		return False	
 
 	def mostrar_usuarios(self):
 
