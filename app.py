@@ -12,8 +12,6 @@ lista_videojuegos = CRUD_Videojuegos()
 lista_usuarios.agregar_usuario("Usuario", "Maestro", "admin", "admin")
 
 
-
-
 app = Flask(__name__)
 CORS(app)
 
@@ -27,9 +25,9 @@ def login():
 
 		response = {}
 
-		for user in listaUsuarios:
+		for user in lista_usuarios
 
-			if user.getUsuario() == nombre and user.getPassword() == passw:
+			if user.validar_usuario(nombre,passw):
 
 				response["id"] = user.getId()
 				response["nombre"] = user.getNombre() + user.getApellido()

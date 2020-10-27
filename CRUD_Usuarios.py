@@ -14,7 +14,7 @@ class CRUD_Usuarios:
 
 			if user.getUsuario() == usuario:
 
-
+				print("El Usuario: " + usuario + " ya existe en el sistema")	
 				return False
 
 		self.listaUsuarios.append(Usuarios(self.contador,nombre,apellido,usuario,passw))
@@ -29,10 +29,7 @@ class CRUD_Usuarios:
 
 			if user.getUsuario() == usuario and user.getPassword() == passw:
 
-				return False
-
-	
-
+				return True
 
 	def mostrar_usuarios(self):
 
