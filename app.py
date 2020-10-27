@@ -3,6 +3,8 @@ from Usuarios import Usuarios
 from CRUD_Usuarios import CRUD_Usuarios
 from CRUD_Videojuegos import CRUD_Videojuegos
 from flask_cors import CORS
+import json
+
 
 
 lista_usuarios = CRUD_Usuarios()
@@ -20,75 +22,66 @@ def login():
 
 	if request.method == 'POST':
 
-		nombre = request.form.get('usuario')
-		passw = request.form.get('pass')
+		user = request.json['usuario']
+		passw = request.json['password']
 
-		response = {}
+		usuario = lista_usuarios.validar_usuario(user,passw)
 
-		user = lista_usuarios.validar_usuario(nombre,passw)
+		if usuario is not False:
 
-		if user is not False:
+			respuesta = {
 
-			response['id'] = user.getId()
-			response['nombre'] = user.getNombre()
-			response['apellido'] = user.getApellido()
-			response['usuario'] = user.getUsuario()
-			response['estado'] = 1
+            	'id': usuario.id, 
+            	'nombre': usuario.nombre,
+            	'apellido': usuario.apellido,
+            	'usuario': usuario.usuario,
+           		'estado': 1
+            }
 
-		response["estado"] = 0	
-		print ("La autenticación fue incorrecta")	
+			return respuesta
 
-		return response		
+		return jsonify({
+
+			'message':'No se encontró el Usuario',
+			'estado': 0
+
+			})
+	
 
 @app.route('/registro', methods=['POST'])
 def registro():
 
 	if request.method == 'POST':
 
-		nombre = request.form.get('Nombre')
-		apellido = request.form.get('Apellido')
-		usuario = request.form.get('Usuario')
-		passw = request.form.get('Password')
+		nombre = request.json['nombre']
+		apellido = request.json['apellido']
+		user = request.json['usuario']
+		passw = request.json['password']
 
-		for user in listaUsuarios:
+		usuario = lista_usuarios.agregar_usuario(nombre, apellido, user, passw)
 
-			contador_temporal = 0
+		if usuario is not False:
 
-			if user.getUsuario() == usuario:
+			return jsonify({'message':'Se registro el usuario'})
 
-				return "El Usuario ya Existe"
+		return jsonify({'message':'El Usuario ya existe'})
 
-			elif contador_temporal == contador:
 
-				listaUsuarios.append(Usuarios(contador, nombre, apellido, usuario, passw))
-				contador += 1
 
-				return user.dump()
-
-			else:
-				contador_temporal += 1
-
-@app.route('/recuperacion-contraseña', methods=['POST'])
+@app.route('/recuperacion-pass', methods=['POST'])
 def recuperacion():	
 
 	if request.method == 'POST':
 
-		usuario = request.form.get('Usuario')
+		user = request.json['usuario']
 
-		for user in listaUsuarios:
+		passw = lista_usuarios.recuperar_pass(user)
 
-			contador_temporal = 0
+		if passw is not False:
 
-			if user.getUsuario() == usuario:
+			return jsonify({'message':'Su contraseña es:' + passw})
 
-				return "El Usuario ya Existe"
-
-			elif contador_temporal == contador:
-
-				return user.dump()
-
-			else:
-				contador_temporal += 1
+		return jsonify({'message':'No se encontró el Usuario'})	
 
 
 @app.route('/', methods=['GET'])

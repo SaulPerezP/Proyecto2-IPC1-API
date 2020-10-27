@@ -31,7 +31,18 @@ class CRUD_Usuarios:
 
 				return user
 
-		return False	
+		return False
+
+	def recuperar_pass(self,usuario):
+
+		for user in self.listaUsuarios:
+
+			if user.getUsuario() == usuario:
+
+				return user.getPassword()
+
+		return False		
+
 
 	def mostrar_usuarios(self):
 
