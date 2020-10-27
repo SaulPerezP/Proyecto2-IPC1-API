@@ -29,9 +29,9 @@ def login():
 
 			if user.validar_usuario(nombre,passw):
 
-				response["id"] = user.getId()
-				response["nombre"] = user.getNombre() + user.getApellido()
-				response["usuario"] = user.getUsuario()
+				response["id"] = "user.getId()"
+				response["nombre"] = "user.getNombre() + user.getApellido()"
+				response["usuario"] = "user.getUsuario()"
 				response["estado"] = 1
 
 				print ("La autenticación fue correcta")
