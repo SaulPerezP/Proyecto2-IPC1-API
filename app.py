@@ -25,7 +25,7 @@ def login():
 
 		response = {}
 
-		if user.validar_usuario(nombre,passw) == True:
+		if lista_usuarios.validar_usuario(nombre,passw) == True:
 
 			response["id"] = "user.getId()"
 			response["nombre"] = "user.getNombre() + user.getApellido()"
