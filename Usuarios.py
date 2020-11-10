@@ -1,13 +1,14 @@
 
 class Usuarios:
 
-	def __init__(self,id,nombre,apellido,usuario,password):
+	def __init__(self,id,nombre,apellido,usuario,password,tipo):
 
 		self.id = id
 		self.nombre = nombre 
 		self.apellido = apellido
 		self.usuario = usuario
 		self.password = password
+		self.tipo = tipo
 
 	#MÉTODOS GET	
 	def getId(self):
@@ -25,6 +26,9 @@ class Usuarios:
 	def getPassword(self):
 		return self.password
 
+	def getTipo(self):
+		return self.tipo	
+
 	#MÉTODOS SET
 	def setId(self, id):
 		self.id = id
@@ -41,6 +45,9 @@ class Usuarios:
 	def setPassword(self, password):
 		self.password = password
 
+	def setTipo(self, tipo):
+		self.tipo = tipo	
+
 	#DUMP	
 	def dump(self):
 	
@@ -49,7 +56,9 @@ class Usuarios:
 			'id' : self.id,
 			'nombre': self.nombre,
 			'apellido': self.apellido,
-			'usuario': self.usuario
+			'usuario': self.usuario,
+			'tipo': self.tipo,
+			'pass': self.password
 		}			
 
 #
